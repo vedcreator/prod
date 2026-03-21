@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Workspace - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@200;300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#f9f9f9",
+                        "on-background": "#2d3435",
+                        "secondary": "#5e5f61",
+                        "inverse-surface": "#0c0f0f",
+                        "on-secondary": "#f9f9fb",
+                        "tertiary-fixed-dim": "#c0dfee",
+                        "tertiary-fixed": "#ceedfd",
+                        "inverse-on-surface": "#9c9d9d",
+                        "error-dim": "#4e0309",
+                        "on-tertiary": "#f3faff",
+                        "on-primary-fixed": "#403f3f",
+                        "on-tertiary-container": "#3c5966",
+                        "tertiary-container": "#ceedfd",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#e5e2e1",
+                        "outline-variant": "#adb3b4",
+                        "secondary-fixed-dim": "#d4d4d6",
+                        "primary": "#5f5e5e",
+                        "on-tertiary-fixed": "#2a4753",
+                        "on-primary": "#faf7f6",
+                        "secondary-dim": "#515355",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-dim": "#3a5764",
+                        "outline": "#757c7d",
+                        "on-secondary-fixed-variant": "#5a5c5d",
+                        "on-secondary-fixed": "#3e3f41",
+                        "surface-dim": "#d4dbdd",
+                        "on-error": "#fff7f6",
+                        "error-container": "#fe8983",
+                        "surface-tint": "#5f5e5e",
+                        "secondary-fixed": "#e2e2e4",
+                        "surface-variant": "#dde4e5",
+                        "on-surface": "#2d3435",
+                        "tertiary": "#466370",
+                        "on-primary-container": "#525151",
+                        "surface-container-highest": "#dde4e5",
+                        "secondary-container": "#e2e2e4",
+                        "background": "#f9f9f9",
+                        "on-surface-variant": "#5a6061",
+                        "on-tertiary-fixed-variant": "#466370",
+                        "error": "#9f403d",
+                        "surface-container": "#ebeeef",
+                        "primary-fixed": "#e5e2e1",
+                        "on-error-container": "#752121",
+                        "surface-container-high": "#e4e9ea",
+                        "surface-container-low": "#f2f4f4",
+                        "primary-fixed-dim": "#d6d4d3",
+                        "on-primary-fixed-variant": "#5c5b5b",
+                        "inverse-primary": "#ffffff",
+                        "on-secondary-container": "#505254",
+                        "primary-dim": "#535252"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-11 py-4 bg-[#f2f4f4] dark:bg-[#1a1d1d]">
+<div class="flex items-center gap-6">
+<button class="hover:bg-[#dde4e5] dark:hover:bg-[#2d3435] transition-colors duration-400 ease-out p-2 rounded-md active:scale-95 opacity-80 transition-all">
+<span class="material-symbols-outlined text-[#5f5e5e] dark:text-[#faf7f6]" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Manrope'] font-light tracking-tight text-[#2d3435] dark:text-[#faf7f6] text-xl" id="taskProgressText">0/0 Tasks</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold text-[#5a6061] dark:text-[#adb3b4]">Oct 24</span>
+</div>
+</header>
+<div class="flex min-h-screen pt-20">
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col h-screen sticky top-20 p-11 gap-4 bg-[#f2f4f4] dark:bg-[#1a1d1d] w-80">
+<div class="mb-8">
+<h2 class="text-2xl font-black text-[#5f5e5e] dark:text-[#faf7f6] font-headline">Workspace</h2>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 bg-[#e5e2e1] dark:bg-[#2d3435] text-[#5f5e5e] dark:text-[#faf7f6] rounded-md font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span>Plan Tomorrow</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Notes</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span>Daily Journal</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-8 md:px-16 py-12">
+<header class="mb-16">
+<p class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-on-surface-variant mb-2">Perspective</p>
+<h2 class="font-headline text-5xl md:text-7xl font-extralight tracking-tighter text-on-surface">Today's <span class="font-bold">Focus</span></h2>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
+<!-- Large Featured Tile -->
+<div class="md:col-span-2 lg:col-span-3 aspect-square md:aspect-auto md:h-[400px] bg-surface-container-low rounded-xl p-10 flex flex-col justify-between group cursor-pointer hover:bg-surface-container-high transition-colors duration-500">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="exercise">fitness_center</span>
+<span class="font-label text-[0.65rem] uppercase tracking-widest bg-primary-container px-3 py-1 rounded-full text-on-primary-container">60 MINS</span>
+</div>
+<div>
+<h3 class="font-headline text-3xl font-semibold mb-2">Exercise</h3>
+<p class="font-body text-sm text-on-surface-variant max-w-[200px]">Strength training and mobility flow.</p>
+</div>
+</div>
+<!-- Medium Tile -->
+<div class="md:col-span-2 lg:col-span-3 aspect-square md:aspect-auto md:h-[400px] bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-10 flex flex-col justify-between hover:bg-surface-container transition-colors duration-500">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="financial_analysis">analytics</span>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-dim flex items-center justify-center text-[10px] font-bold">FA</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-3xl font-semibold mb-2">Financial Analysis Revision</h3>
+<p class="font-body text-sm text-on-surface-variant">Reviewing Q3 portfolio performance metrics.</p>
+</div>
+</div>
+<!-- Small Tile -->
+<div class="md:col-span-2 aspect-square bg-surface-container-low rounded-xl p-8 flex flex-col justify-between group cursor-pointer">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="reading">menu_book</span>
+<h3 class="font-headline text-xl font-medium">Reading</h3>
+</div>
+<!-- Completion Status Tile -->
+<div class="md:col-span-2 aspect-square bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between">
+<div class="text-4xl font-headline font-black" id="dailyCompletionCounter">0%</div>
+<div>
+<h3 class="font-headline text-xl font-medium">Daily Velocity</h3>
+<div class="w-full bg-on-primary/20 h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-on-primary h-full" id="dailyCompletionBar" style="width: 0%;"></div>
+</div>
+</div>
+</div>
+<!-- New Tile Trigger -->
+<button class="md:col-span-2 aspect-square border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-surface-container-low transition-all group" id="openNewEntryModal" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="add">add</span>
+</div>
+<span class="font-label text-xs uppercase tracking-widest font-bold">Add Task</span>
+</button>
+</div>
+<section class="mt-8 bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline text-xl font-semibold">Task List</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Live Firestore</span>
+</div>
+<div class="flex items-center gap-2 mb-4" id="dashboardTaskFilters">
+<button class="text-xs uppercase tracking-widest px-3 py-1 rounded border border-outline-variant/40 text-on-surface bg-surface-container-low" data-filter="all" type="button">All</button>
+<button class="text-xs uppercase tracking-widest px-3 py-1 rounded border border-outline-variant/40 text-on-surface-variant" data-filter="active" type="button">Active</button>
+<button class="text-xs uppercase tracking-widest px-3 py-1 rounded border border-outline-variant/40 text-on-surface-variant" data-filter="completed" type="button">Completed</button>
+</div>
+<p class="text-sm text-on-surface-variant mb-4 hidden" id="dashboardTaskEmptyState">No tasks yet. Add one from the Add Task modal.</p>
+<ul class="space-y-3" id="dashboardTaskList"></ul>
+</section>
+</main>
+</div>
+<!-- Modal Backdrop (Hidden by default, shown for structure) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-inverse-surface/10 backdrop-blur-sm" id="newEntryModalOverlay">
+<!-- New Tile Modal -->
+<div class="w-full max-w-lg glass-panel rounded-xl overflow-hidden shadow-2xl" id="newEntryModalPanel">
+<div class="p-10">
+<header class="flex justify-between items-center mb-10">
+<h2 class="font-headline text-3xl font-light tracking-tight">New <span class="font-bold">Entry</span></h2>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" id="closeNewEntryModal" type="button">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</header>
+<form class="space-y-8" id="addTaskForm">
+<div class="space-y-2">
+<label class="font-label text-[0.65rem] uppercase tracking-widest text-on-surface-variant ml-1">Task Name</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 focus:bg-surface-container-high px-0 py-4 text-xl font-headline border-b-2 border-primary-container transition-all placeholder:text-outline-variant" id="addTaskInput" placeholder="What needs focus?" type="text"/>
+</div>
+<button class="flex items-center justify-between py-4 border-b border-outline-variant/10 w-full text-left" id="selectIconButton" type="button">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-high rounded-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="category" id="selectedTaskIcon">category</span>
+</div>
+<span class="font-body text-sm font-medium">Select Icon</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="flex items-center justify-between py-4">
+<div class="flex flex-col">
+<span class="font-body text-sm font-medium">Track Consistency</span>
+<span class="text-[0.7rem] text-on-surface-variant uppercase tracking-wider">Log daily progress metrics</span>
+</div>
+<!-- Toggle Switch -->
+<button aria-pressed="true" class="w-12 h-6 bg-primary-container rounded-full relative p-1 cursor-pointer" id="trackConsistencyToggle" type="button">
+<div class="w-4 h-4 bg-primary rounded-full absolute right-1 transition-all" id="trackConsistencyThumb"></div>
+</button>
+</div>
+<div class="pt-6">
+<button class="w-full bg-primary text-on-primary py-5 rounded-md font-headline font-bold uppercase tracking-[0.2em] text-xs hover:bg-primary-dim transition-all active:scale-[0.98]" type="submit">
+                            Create Task
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Mobile Navigation (Bottom) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-lowest glass-panel flex justify-around items-center py-4 z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Focus</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Plan</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Stats</span>
+</button>
+</nav>
+<script type="module" src="../shared/navigation.js"></script>
+<script type="module" src="../shared/firestore-tasks.js"></script>
+</body></html>

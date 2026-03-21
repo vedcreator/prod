@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Workspace - Workspace Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@200;300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#f9f9f9",
+              "on-background": "#2d3435",
+              "secondary": "#5e5f61",
+              "inverse-surface": "#0c0f0f",
+              "on-secondary": "#f9f9fb",
+              "tertiary-fixed-dim": "#c0dfee",
+              "tertiary-fixed": "#ceedfd",
+              "inverse-on-surface": "#9c9d9d",
+              "error-dim": "#4e0309",
+              "on-tertiary": "#f3faff",
+              "on-primary-fixed": "#403f3f",
+              "on-tertiary-container": "#3c5966",
+              "tertiary-container": "#ceedfd",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#e5e2e1",
+              "outline-variant": "#adb3b4",
+              "secondary-fixed-dim": "#d4d4d6",
+              "primary": "#5f5e5e",
+              "on-tertiary-fixed": "#2a4753",
+              "on-primary": "#faf7f6",
+              "secondary-dim": "#515355",
+              "surface-bright": "#f9f9f9",
+              "tertiary-dim": "#3a5764",
+              "outline": "#757c7d",
+              "on-secondary-fixed-variant": "#5a5c5d",
+              "on-secondary-fixed": "#3e3f41",
+              "surface-dim": "#d4dbdd",
+              "on-error": "#fff7f6",
+              "error-container": "#fe8983",
+              "surface-tint": "#5f5e5e",
+              "secondary-fixed": "#e2e2e4",
+              "surface-variant": "#dde4e5",
+              "on-surface": "#2d3435",
+              "tertiary": "#466370",
+              "on-primary-container": "#525151",
+              "surface-container-highest": "#dde4e5",
+              "secondary-container": "#e2e2e4",
+              "background": "#f9f9f9",
+              "on-surface-variant": "#5a6061",
+              "on-tertiary-fixed-variant": "#466370",
+              "error": "#9f403d",
+              "surface-container": "#ebeeef",
+              "primary-fixed": "#e5e2e1",
+              "on-error-container": "#752121",
+              "surface-container-high": "#e4e9ea",
+              "surface-container-low": "#f2f4f4",
+              "primary-fixed-dim": "#d6d4d3",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "inverse-primary": "#ffffff",
+              "on-secondary-container": "#505254",
+              "primary-dim": "#535252"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .editorial-header {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface overflow-hidden">
+<!-- Top Navigation Anchor (Shared Component) -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-11 py-4 bg-[#f9f9f9] dark:bg-[#0c0f0f]">
+<div class="flex items-center gap-4">
+<button class="Active: scale-95 opacity-80 transition-all hover:bg-[#dde4e5] dark:hover:bg-[#2d3435] p-2 rounded-md">
+<span class="material-symbols-outlined text-[#5f5e5e] dark:text-[#faf7f6]">close</span>
+</button>
+<span class="text-lg font-semibold tracking-tighter text-[#5f5e5e] dark:text-[#faf7f6] editorial-header">3/5 Tasks</span>
+</div>
+<div class="editorial-header font-light tracking-tight text-[#2d3435] dark:text-[#faf7f6]">
+            Oct 24
+        </div>
+</header>
+<main class="relative h-screen flex">
+<!-- Navigation Drawer Shell (Shared Component Logic) -->
+<aside class="hidden md:flex flex-col h-full p-11 gap-4 bg-[#f2f4f4] dark:bg-[#1a1d1d] docked left-0 h-full w-80 z-40">
+<div class="mb-12">
+<h1 class="text-2xl font-black text-[#5f5e5e] dark:text-[#faf7f6] editorial-header">Workspace</h1>
+</div>
+<nav class="flex flex-col gap-3">
+<!-- Plan Tomorrow (Inactive) -->
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Plan Tomorrow</span>
+</a>
+<!-- Notes (Inactive) -->
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Notes</span>
+</a>
+<!-- Daily Journal (Active State Logic applied) -->
+<a class="flex items-center gap-4 px-4 py-3 bg-[#e5e2e1] dark:bg-[#2d3435] text-[#5f5e5e] dark:text-[#faf7f6] rounded-md hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Daily Journal</span>
+</a>
+<!-- Settings (Inactive) -->
+<a class="flex items-center gap-4 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-12">
+<div class="bg-surface-container-highest p-6 rounded-lg opacity-80 border-none">
+<p class="text-xs uppercase tracking-tighter text-on-surface-variant font-bold mb-2">Space Usage</p>
+<div class="h-1 w-full bg-outline-variant/20 rounded-full">
+<div class="h-1 w-1/3 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas (Editorial Layout) -->
+<section class="flex-1 h-full flex flex-col items-center justify-center p-8 md:p-24 bg-surface transition-all duration-700">
+<div class="max-w-4xl w-full flex flex-col md:flex-row gap-16 items-start">
+<!-- Left Column: Typographic Anchor -->
+<div class="w-full md:w-1/2 flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-[0.65rem] uppercase tracking-[0.3em] font-bold text-secondary-dim">Digital Sanctuary</span>
+<h2 class="text-6xl md:text-8xl editorial-header font-extrabold tracking-tighter text-on-surface leading-[0.85]">
+                            Ethereal Focus.
+                        </h2>
+</div>
+<p class="text-on-surface-variant text-lg font-light max-w-sm leading-relaxed">
+                        Transition between your deep-work notes and daily reflections with intentional silence.
+                    </p>
+<div class="flex flex-col gap-4 mt-8">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center bg-surface-container-low rounded-lg group-hover:bg-primary-container transition-colors duration-400">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<span class="editorial-header text-sm font-semibold tracking-wide">Quick Workspace Entry</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Menu Grid (Bento Style) -->
+<div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+<!-- Plan Tomorrow Tile -->
+<div class="col-span-1 bg-surface-container-low p-8 aspect-square flex flex-col justify-between hover:bg-surface-container-high transition-all duration-500 cursor-pointer group">
+<span class="material-symbols-outlined text-primary opacity-40 group-hover:opacity-100 transition-opacity" data-icon="event_upcoming">event_upcoming</span>
+<div class="flex flex-col gap-1">
+<span class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold">Action</span>
+<span class="editorial-header text-lg font-bold leading-none">Plan Tomorrow</span>
+</div>
+</div>
+<!-- Notes Tile -->
+<div class="col-span-1 bg-surface-container p-8 aspect-square flex flex-col justify-between hover:bg-surface-container-highest transition-all duration-500 cursor-pointer group">
+<span class="material-symbols-outlined text-primary opacity-40 group-hover:opacity-100 transition-opacity" data-icon="description">description</span>
+<div class="flex flex-col gap-1">
+<span class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold">Vault</span>
+<span class="editorial-header text-lg font-bold leading-none">Notes</span>
+</div>
+</div>
+<!-- Daily Journal Tile (Visual Emphasis) -->
+<div class="col-span-2 bg-primary text-on-primary p-8 h-48 flex flex-col justify-between hover:bg-primary-dim transition-all duration-500 cursor-pointer group relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10 scale-150 rotate-12 transition-transform duration-700 group-hover:rotate-0">
+<span class="material-symbols-outlined text-[120px]" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<span class="material-symbols-outlined text-on-primary" data-icon="auto_stories">auto_stories</span>
+<div class="flex flex-col gap-1">
+<span class="text-[0.6rem] uppercase tracking-widest text-on-primary/60 font-bold">Reflection</span>
+<span class="editorial-header text-2xl font-bold leading-none">Daily Journal</span>
+</div>
+</div>
+<!-- Settings Tile -->
+<div class="col-span-2 bg-surface-container-lowest p-6 flex items-center justify-between border-none hover:bg-surface-container transition-all duration-500 cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="settings">settings</span>
+<span class="editorial-header text-sm font-semibold uppercase tracking-widest">Settings</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Focus Tray (Custom System Component) -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 w-fit px-8 py-4 bg-surface-container-lowest/70 backdrop-blur-xl rounded-xl border-none flex items-center gap-8 shadow-sm">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">search</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter text-on-surface-variant">Find</span>
+</button>
+<div class="w-[1px] h-6 bg-outline-variant/30"></div>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">palette</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter text-on-surface-variant">Theme</span>
+</button>
+<div class="w-[1px] h-6 bg-outline-variant/30"></div>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">help_outline</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter text-on-surface-variant">Guide</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Visual Texture Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
+<div class="w-full h-full bg-repeat" data-alt="Subtle paper texture overlay for editorial feel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbxilFV2EB9VWUl0KZ5zyRgy37XEtcPWMXDHv-BbcH4u_ZuCn9hdZAPBHr6DiX0jY69hYnWagkCfrhDBbQz2udk_ssfxp48VSaCGMXO__QcCy6_kAr7ZKNZxdphlj-M4ZcYKLIXFTp6qon1zAfeTb5nrBR94Au2VDPLI9CBKQplfQgIsP-XW7CoKohZU3rc53UHOcqkyPlVYdOYoM5MaSHAkf8wZ6HSO5O6ZUYKpQdOpzNIcNad9ewOwx6dPXreGU4XLq_2DanOeBq');"></div>
+</div>
+<script type="module" src="../shared/navigation.js"></script>
+</body></html>

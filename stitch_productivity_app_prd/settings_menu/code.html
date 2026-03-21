@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - The Editorial Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#f9f9f9",
+              "on-background": "#2d3435",
+              "secondary": "#5e5f61",
+              "inverse-surface": "#0c0f0f",
+              "on-secondary": "#f9f9fb",
+              "tertiary-fixed-dim": "#c0dfee",
+              "tertiary-fixed": "#ceedfd",
+              "inverse-on-surface": "#9c9d9d",
+              "error-dim": "#4e0309",
+              "on-tertiary": "#f3faff",
+              "on-primary-fixed": "#403f3f",
+              "on-tertiary-container": "#3c5966",
+              "tertiary-container": "#ceedfd",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#e5e2e1",
+              "outline-variant": "#adb3b4",
+              "secondary-fixed-dim": "#d4d4d6",
+              "primary": "#5f5e5e",
+              "on-tertiary-fixed": "#2a4753",
+              "on-primary": "#faf7f6",
+              "secondary-dim": "#515355",
+              "surface-bright": "#f9f9f9",
+              "tertiary-dim": "#3a5764",
+              "outline": "#757c7d",
+              "on-secondary-fixed-variant": "#5a5c5d",
+              "on-secondary-fixed": "#3e3f41",
+              "surface-dim": "#d4dbdd",
+              "on-error": "#fff7f6",
+              "error-container": "#fe8983",
+              "surface-tint": "#5f5e5e",
+              "secondary-fixed": "#e2e2e4",
+              "surface-variant": "#dde4e5",
+              "on-surface": "#2d3435",
+              "tertiary": "#466370",
+              "on-primary-container": "#525151",
+              "surface-container-highest": "#dde4e5",
+              "secondary-container": "#e2e2e4",
+              "background": "#f9f9f9",
+              "on-surface-variant": "#5a6061",
+              "on-tertiary-fixed-variant": "#466370",
+              "error": "#9f403d",
+              "surface-container": "#ebeeef",
+              "primary-fixed": "#e5e2e1",
+              "on-error-container": "#752121",
+              "surface-container-high": "#e4e9ea",
+              "surface-container-low": "#f2f4f4",
+              "primary-fixed-dim": "#d6d4d3",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "inverse-primary": "#ffffff",
+              "on-secondary-container": "#505254",
+              "primary-dim": "#535252"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #2d3435;
+        }
+        .headline-font {
+            font-family: 'Manrope', sans-serif;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 2px;
+            background: #adb3b4;
+            border-radius: 1px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #5f5e5e;
+            margin-top: -5px;
+            cursor: pointer;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-11 py-4 bg-[#f2f4f4] dark:bg-[#1a1d1d] no-border tonal-shift">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#5f5e5e] dark:text-[#faf7f6]">menu</span>
+<h1 class="font-['Manrope'] font-light tracking-tight text-[#2d3435] dark:text-[#faf7f6]">3/5 Tasks</h1>
+</div>
+<div class="text-lg font-semibold tracking-tighter text-[#5f5e5e] dark:text-[#faf7f6]">
+            Workspace
+        </div>
+<div class="text-[#5f5e5e] dark:text-[#faf7f6]">
+            Oct 24
+        </div>
+</header>
+<div class="flex h-screen pt-[72px]">
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col h-full p-11 gap-4 bg-[#f2f4f4] dark:bg-[#1a1d1d] w-80 no-border spacing-gap-12">
+<div class="mb-12">
+<h2 class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold text-[#5f5e5e] dark:text-[#faf7f6]">Workspace</h2>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Plan Tomorrow</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Notes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6061] dark:text-[#adb3b4] hover:translate-x-1 transition-transform duration-400 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Daily Journal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#e5e2e1] dark:bg-[#2d3435] text-[#5f5e5e] dark:text-[#faf7f6] rounded-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Manrope'] uppercase tracking-widest text-[0.75rem] font-bold">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-11 md:px-16 py-12 bg-surface">
+<div class="max-w-4xl mx-auto">
+<!-- Page Header -->
+<header class="mb-16">
+<span class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-on-surface-variant font-bold mb-2 block">Configuration</span>
+<h2 class="headline-font text-5xl md:text-6xl font-extralight tracking-tight text-on-surface">Environment</h2>
+</header>
+<!-- Settings Grid (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+<!-- Theme & Appearance Section -->
+<section class="md:col-span-7 flex flex-col gap-12">
+<!-- Theme Switcher -->
+<div class="group">
+<label class="font-label text-xs font-semibold uppercase tracking-wider text-outline mb-6 block">Theme Mode</label>
+<div class="flex items-center gap-8 bg-surface-container-low p-6 rounded-lg">
+<button class="flex-1 flex flex-col items-center gap-3 p-4 bg-surface-container-lowest rounded-md shadow-sm border-2 border-primary ring-offset-2 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="light_mode">light_mode</span>
+<span class="text-xs font-medium">Light</span>
+</button>
+<button class="flex-1 flex flex-col items-center gap-3 p-4 bg-transparent opacity-40 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="dark_mode">dark_mode</span>
+<span class="text-xs font-medium">Dark</span>
+</button>
+<button class="flex-1 flex flex-col items-center gap-3 p-4 bg-transparent opacity-40 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="brightness_auto">brightness_auto</span>
+<span class="text-xs font-medium">System</span>
+</button>
+</div>
+</div>
+<!-- Typography Adjuster -->
+<div class="group">
+<div class="flex justify-between items-end mb-6">
+<label class="font-label text-xs font-semibold uppercase tracking-wider text-outline">Typography Scale</label>
+<span class="text-xs font-mono text-primary">14px</span>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg">
+<div class="flex items-center gap-6">
+<span class="text-xs font-body text-on-surface-variant">A</span>
+<input class="accent-primary" max="24" min="12" type="range" value="14"/>
+<span class="text-xl font-body text-on-surface-variant">A</span>
+</div>
+<p class="mt-8 text-sm leading-relaxed text-on-surface-variant italic font-light">
+                                    "The interface should feel like a high-end digital gallery—a space where focus is a byproduct of calm."
+                                </p>
+</div>
+</div>
+</section>
+<!-- Background & Accents Section -->
+<section class="md:col-span-5 flex flex-col gap-12">
+<!-- Color Picker -->
+<div class="group">
+<label class="font-label text-xs font-semibold uppercase tracking-wider text-outline mb-6 block">Canvas Background</label>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col gap-6">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded-full bg-[#f9f9f9] border border-outline-variant cursor-pointer ring-2 ring-primary ring-offset-2"></div>
+<div class="w-10 h-10 rounded-full bg-[#f2f4f4] border border-outline-variant cursor-pointer hover:scale-105 transition-transform"></div>
+<div class="w-10 h-10 rounded-full bg-[#ebeeef] border border-outline-variant cursor-pointer hover:scale-105 transition-transform"></div>
+<div class="w-10 h-10 rounded-full bg-[#dde4e5] border border-outline-variant cursor-pointer hover:scale-105 transition-transform"></div>
+</div>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-mono text-outline">HEX</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-sm text-sm font-mono tracking-widest focus:ring-1 focus:ring-primary" type="text" value="#F9F9F9"/>
+</div>
+</div>
+</div>
+<!-- Glassmorphism Preview Card -->
+<div class="relative h-64 rounded-xl overflow-hidden group">
+<img alt="Preview" class="absolute inset-0 w-full h-auto object-cover grayscale opacity-40 group-hover:scale-110 transition-transform duration-1000" data-alt="Minimalist architectural abstract with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE89OylRRzAaeeSW72iXQAT_dPzCzVlB7s5znIcioFEGkh72oBQ_rNjVaRigoDSgQimzJBg5M3QsR7iNRDL2bVDvV_SZ55TSUSXM6LkJjzMrJBsRosDQKoVQhRhu_SjvexU-xs19v_VOmGi5YfUOf1Z_0zXgUak1qLy4xzhcYba67rwupvE_o-pkr5DoreW37uxXu7gCzUdi-vLLGDNl-LjLFYzpJXUNxeecwlhzpwwbf-HCyN2TdjBLspPJR0frLgxdyliUem949L"/>
+<div class="absolute inset-0 bg-surface-container-lowest/70 backdrop-blur-xl p-8 flex flex-col justify-end">
+<span class="font-label text-[0.6rem] uppercase tracking-widest text-primary font-bold">Surface Preview</span>
+<h3 class="headline-font text-lg font-medium">Ethereal Depth</h3>
+<p class="text-xs text-on-surface-variant mt-1">Testing glassmorphism and backdrop blur filters on Level 2 containers.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Footer -->
+<footer class="mt-20 pt-12 border-t border-surface-container-high flex justify-between items-center">
+<button class="text-sm font-medium text-error hover:opacity-70 transition-opacity">Reset to Defaults</button>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-secondary-container text-on-secondary-container text-sm font-medium rounded-md hover:bg-surface-container-highest transition-colors">Discard</button>
+<button class="px-8 py-3 bg-primary text-on-primary text-sm font-medium rounded-md hover:bg-primary-dim transition-colors shadow-sm">Apply Changes</button>
+</div>
+</footer>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation (BottomNavBar substitute for mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-lowest flex justify-around items-center py-4 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="text-[10px] uppercase tracking-tighter font-bold">Plan</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[10px] uppercase tracking-tighter font-bold">Notes</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] uppercase tracking-tighter font-bold">Settings</span>
+</button>
+</nav>
+<script type="module" src="../shared/navigation.js"></script>
+</body></html>
