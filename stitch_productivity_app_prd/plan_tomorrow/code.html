@@ -189,7 +189,7 @@
 </div>
 <h3 class="font-headline text-xl font-bold tracking-tight text-on-surface">Deep Work</h3>
 </div>
-<div class="space-y-4">
+<div class="space-y-4" id="deepWorkTaskInputsContainer">
 <div class="p-4 rounded-lg bg-surface-container-low flex items-center gap-4">
 <span class="material-symbols-outlined text-outline">radio_button_unchecked</span>
 <span class="font-body text-on-surface">Finalize design system spec</span>
@@ -198,7 +198,7 @@
 <span class="material-symbols-outlined text-outline">radio_button_unchecked</span>
 <span class="font-body text-on-surface">Review pull requests</span>
 </div>
-<button class="p-4 rounded-lg border-2 border-dashed border-outline-variant/30 flex items-center justify-center gap-2 w-full text-outline-variant hover:text-primary hover:border-primary/30 transition-all">
+<button class="p-4 rounded-lg border-2 border-dashed border-outline-variant/30 flex items-center justify-center gap-2 w-full text-outline-variant hover:text-primary hover:border-primary/30 transition-all" id="deepWorkAddTaskButton" type="button">
 <span class="material-symbols-outlined text-sm">add</span>
 <span class="font-label text-[10px] uppercase tracking-widest">Add Task</span>
 </button>
@@ -259,5 +259,6 @@
 </button>
 <script type="module" src="../shared/app-settings.js"></script>
 <script type="module" src="../shared/navigation.js"></script>
+<script type="module" src="../shared/firestore-task-header.js"></script>
 <script type="module" src="../shared/firestore-tasks.js"></script>
 </body></html>

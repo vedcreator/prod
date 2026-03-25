@@ -1,29 +1,18 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
-  getFirestore,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
+  setDoc,
   serverTimestamp,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBg8991DcFWsmFxH2X-S71_yTPeLbQlnsY",
-  authDomain: "prod-4fce7.firebaseapp.com",
-  projectId: "prod-4fce7",
-  storageBucket: "prod-4fce7.firebasestorage.app",
-  messagingSenderId: "722342652369",
-  appId: "1:722342652369:web:a272464337946230e918f0",
-  measurementId: "G-FC4G9SXQZK",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { db } from "./firebase-init.js";
 const tasksRef = collection(db, "tasks");
 const tasksQuery = query(tasksRef, orderBy("createdAt", "asc"));
 
@@ -67,7 +56,16 @@ function wireMainDashboard() {
   let editingDraft = "";
   let draggedTaskId = null;
   let trackConsistencyEnabled = true;
-  const modalIcons = ["category", "fitness_center", "menu_book", "bolt", "check_circle"];
+  const modalIcons = [
+    "category",
+    "fitness_center",
+    "menu_book",
+    "bolt",
+    "check_circle",
+    "event",
+    "auto_stories",
+    "water_drop",
+  ];
   let selectedIconIndex = 0;
 
   function openNewEntryModal() {
@@ -148,10 +146,66 @@ function wireMainDashboard() {
     renderTrackConsistencyToggle();
   }
   if (selectIconButton) {
-    selectIconButton.addEventListener("click", () => {
-      selectedIconIndex = (selectedIconIndex + 1) % modalIcons.length;
-      renderSelectedIcon();
+    let iconPickerEl = null;
+
+    function closeIconPicker() {
+      if (iconPickerEl) {
+        iconPickerEl.remove();
+        iconPickerEl = null;
+      }
+    }
+
+    function openIconPicker() {
+      if (iconPickerEl) {
+        return;
+      }
+      const rect = selectIconButton.getBoundingClientRect();
+      iconPickerEl = document.createElement("div");
+      iconPickerEl.className =
+        "fixed z-[999] bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-2xl p-3 grid grid-cols-4 gap-2";
+      iconPickerEl.style.left = `${rect.left}px`;
+      iconPickerEl.style.top = `${rect.bottom + 8}px`;
+
+      modalIcons.forEach((icon) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className =
+          "flex items-center justify-center rounded-lg hover:bg-surface-container hover:scale-105 transition-transform";
+        btn.setAttribute("aria-label", `Select icon: ${icon}`);
+
+        const span = document.createElement("span");
+        span.className = "material-symbols-outlined text-primary";
+        span.textContent = icon;
+        btn.appendChild(span);
+
+        btn.addEventListener("click", () => {
+          const idx = modalIcons.indexOf(icon);
+          if (idx >= 0) {
+            selectedIconIndex = idx;
+            renderSelectedIcon();
+          }
+          closeIconPicker();
+        });
+
+        iconPickerEl.appendChild(btn);
+      });
+
+      document.body.appendChild(iconPickerEl);
+    }
+
+    selectIconButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (iconPickerEl) {
+        closeIconPicker();
+        return;
+      }
+      openIconPicker();
     });
+
+    document.addEventListener("click", () => {
+      closeIconPicker();
+    });
+
     renderSelectedIcon();
   }
 
@@ -163,11 +217,18 @@ function wireMainDashboard() {
         return;
       }
 
+      const ariaPressed = trackConsistencyToggle?.getAttribute("aria-pressed");
+      const trackConsistency =
+        ariaPressed === null || ariaPressed === undefined
+          ? trackConsistencyEnabled
+          : ariaPressed === "true";
+      const selectedIcon = modalIcons[selectedIconIndex];
+
       await addDoc(tasksRef, {
         title,
-        icon: modalIcons[selectedIconIndex],
+        icon: selectedIcon,
         completed: false,
-        trackConsistency: trackConsistencyEnabled,
+        trackConsistency: trackConsistency ?? trackConsistencyEnabled,
         order: Date.now(),
         createdAt: serverTimestamp(),
       });
@@ -540,31 +601,146 @@ function wireMainDashboard() {
 }
 
 function wirePlanTomorrow() {
-  const addTaskInput = document.getElementById("planAddTaskInput");
-  if (!addTaskInput) {
+  const planDocPathId = "main";
+
+  function getLocalUid() {
+    const key = "app.uid";
+    const existing = window.localStorage.getItem(key);
+    if (existing) {
+      return existing;
+    }
+    const generated = "local-user";
+    window.localStorage.setItem(key, generated);
+    return generated;
+  }
+
+  // Persist the fixed "planning canvas" inputs.
+  const fixedInputs = Array.from(
+    document.querySelectorAll('input[type="text"]')
+  ).filter((input) => !(input instanceof HTMLElement && input.matches("[data-deepwork-task]")));
+
+  // Deep Work supports dynamically appended inputs.
+  const deepWorkContainer = document.getElementById(
+    "deepWorkTaskInputsContainer"
+  );
+  const deepWorkAddButton = document.getElementById("deepWorkAddTaskButton");
+  if (!deepWorkContainer || !deepWorkAddButton) {
+    // If IDs don't exist (older HTML), keep at least the old behavior.
+    const addTaskInput = document.getElementById("planAddTaskInput");
+    if (!addTaskInput) {
+      return;
+    }
+    addTaskInput.addEventListener("keydown", async (event) => {
+      if (event.key !== "Enter") {
+        return;
+      }
+
+      event.preventDefault();
+      const title = addTaskInput.value.trim();
+      if (!title) {
+        return;
+      }
+
+      await addDoc(tasksRef, {
+        title,
+        completed: false,
+        order: Date.now(),
+        createdAt: serverTimestamp(),
+      });
+
+      addTaskInput.value = "";
+    });
     return;
   }
 
-  addTaskInput.addEventListener("keydown", async (event) => {
-    if (event.key !== "Enter") {
-      return;
-    }
+  const uid = getLocalUid();
+  const planRef = doc(db, "users", uid, "planTomorrow", planDocPathId);
 
-    event.preventDefault();
-    const title = addTaskInput.value.trim();
-    if (!title) {
-      return;
-    }
+  let deepWorkValues = [];
 
-    await addDoc(tasksRef, {
-      title,
-      completed: false,
-      order: Date.now(),
-      createdAt: serverTimestamp(),
+  function getDeepWorkInputEls() {
+    return Array.from(
+      deepWorkContainer.querySelectorAll("[data-deepwork-task]")
+    );
+  }
+
+  async function persistPlan() {
+    const fixedValues = fixedInputs.map((input) => input.value || "");
+    const deepValues = getDeepWorkInputEls().map((input) => input.value || "");
+    await setDoc(
+      planRef,
+      {
+        fixedValues,
+        deepWorkValues: deepValues,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
+  }
+
+  function makeDeepWorkInput(initialValue) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = initialValue || "";
+    input.dataset.deepworkTask = "true";
+    // Styling matches the movement input style already used elsewhere.
+    input.className =
+      "w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 font-body text-on-surface text-lg p-0 pb-1";
+
+    input.addEventListener("blur", async () => {
+      // Update persisted plan whenever a deep work task value changes.
+      await persistPlan();
     });
+    return input;
+  }
 
-    addTaskInput.value = "";
+  function renderDeepWorkInputs() {
+    // Clear existing dynamic inputs (but keep the add button).
+    getDeepWorkInputEls().forEach((el) => el.remove());
+
+    // Insert new inputs above the add button.
+    deepWorkValues.forEach((value) => {
+      const input = makeDeepWorkInput(value);
+      deepWorkContainer.insertBefore(input, deepWorkAddButton);
+    });
+  }
+
+  async function loadAndRender() {
+    const snap = await getDoc(planRef);
+    if (snap.exists()) {
+      const data = snap.data() || {};
+      const savedFixed = Array.isArray(data.fixedValues) ? data.fixedValues : [];
+      deepWorkValues = Array.isArray(data.deepWorkValues)
+        ? data.deepWorkValues
+        : [];
+
+      fixedInputs.forEach((input, index) => {
+        const nextVal = savedFixed[index];
+        if (typeof nextVal === "string") {
+          input.value = nextVal;
+        }
+      });
+    }
+
+    renderDeepWorkInputs();
+  }
+
+  // Persist fixed input values on blur.
+  fixedInputs.forEach((input) => {
+    input.addEventListener("blur", async () => {
+      await persistPlan();
+    });
   });
+
+  deepWorkAddButton.addEventListener("click", async () => {
+    const input = makeDeepWorkInput("");
+    deepWorkContainer.insertBefore(input, deepWorkAddButton);
+    deepWorkValues = getDeepWorkInputEls().map((el) => el.value || "");
+    await persistPlan();
+    input.focus();
+  });
+
+  loadAndRender();
 }
 
 function wireTileDetailView() {

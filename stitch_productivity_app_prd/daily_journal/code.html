@@ -137,7 +137,7 @@
 <!-- Main Editor Surface -->
 <div class="relative group">
 <div class="absolute -inset-4 bg-surface-container-low opacity-0 group-focus-within:opacity-100 transition-opacity duration-700 -z-10 rounded-xl"></div>
-<textarea class="w-full min-h-[400px] bg-transparent border-none focus:ring-0 font-body text-2xl md:text-3xl text-on-surface leading-[1.6] placeholder:text-surface-dim resize-none p-0" placeholder="Start typing your reflections..."></textarea>
+<textarea class="w-full min-h-[400px] bg-transparent border-none focus:ring-0 font-body text-2xl md:text-3xl text-on-surface leading-[1.6] placeholder:text-surface-dim resize-none p-0" id="journalTextarea" placeholder="Start typing your reflections..."></textarea>
 </div>
 <!-- Rich Text Floating Utility (Editorial Style) -->
 <div class="flex items-center gap-6 pt-8">
@@ -185,7 +185,7 @@
 <span class="material-symbols-outlined">link</span>
 </button>
 <div class="w-px h-6 bg-surface-container"></div>
-<button class="px-6 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold rounded-full hover:bg-primary-dim transition-colors duration-400">
+<button class="px-6 py-2 bg-primary text-on-primary font-label text-xs uppercase tracking-widest font-bold rounded-full hover:bg-primary-dim transition-colors duration-400" id="saveJournalButton" type="button">
                 Save Entry
             </button>
 </div>
@@ -211,4 +211,6 @@
 </nav>
 <script type="module" src="../shared/app-settings.js"></script>
 <script type="module" src="../shared/navigation.js"></script>
+<script type="module" src="../shared/firestore-task-header.js"></script>
+<script type="module" src="../shared/firestore-journal.js"></script>
 </body></html>

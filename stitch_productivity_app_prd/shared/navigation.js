@@ -20,6 +20,47 @@ function navigateTo(routeKey) {
   window.location.href = route;
 }
 
+function applyHrefUpdates() {
+  const labelToRoute = new Map([
+    ["main dashboard", "main_dashboard"],
+    ["dashboard", "main_dashboard"],
+    ["tasks", "main_dashboard"],
+    ["focus", "main_dashboard"],
+    ["plan tomorrow", "plan_tomorrow"],
+    ["plan", "plan_tomorrow"],
+    ["notes", "notes_workspace"],
+    ["daily journal", "daily_journal"],
+    ["journal", "daily_journal"],
+    ["settings", "settings_menu"],
+    ["workspace", "main_dashboard"],
+  ]);
+
+  document.querySelectorAll('a[href="#"]').forEach((anchor) => {
+    if (!(anchor instanceof HTMLAnchorElement)) {
+      return;
+    }
+    const text = normalize(anchor.textContent);
+
+    // Icon text may be included in anchor.textContent (e.g. "event_upcoming").
+    // Use substring matching against our known labels.
+    let matchedRouteKey = null;
+    for (const [label, routeKey] of labelToRoute.entries()) {
+      if (text.includes(label)) {
+        matchedRouteKey = routeKey;
+        break;
+      }
+    }
+
+    if (!matchedRouteKey) {
+      return;
+    }
+    const route = ROUTES[matchedRouteKey];
+    if (route) {
+      anchor.setAttribute("href", route);
+    }
+  });
+}
+
 function nearestClickable(element) {
   return (
     element.closest("a,button,[role='button'],[class*='cursor-pointer']") ||
@@ -79,20 +120,76 @@ function bindByIcon(iconName, routeKey) {
   });
 }
 
+function wireCategoryTiles() {
+  // Bind cards by their visible heading text (e.g. "Exercise" -> tile_detail_view).
+  document.querySelectorAll("h1,h2,h3").forEach((heading) => {
+    if (!(heading instanceof HTMLElement)) {
+      return;
+    }
+    const headingText = normalize(heading.textContent);
+    if (headingText !== "exercise") {
+      return;
+    }
+
+    const card = heading.closest("div");
+    if (card) {
+      bindRouteFromNode(card, "tile_detail_view");
+    }
+  });
+}
+
+function updateLiveDates() {
+  const now = new Date();
+  const shortDate = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+  const longDate = now.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  });
+
+  const replaceMap = [
+    { re: /^oct\s+\d{1,2}$/i, value: shortDate },
+    { re: /^october\s+\d{1,2}$/i, value: longDate },
+  ];
+
+  document.querySelectorAll("*").forEach((el) => {
+    if (!(el instanceof HTMLElement)) {
+      return;
+    }
+    const t = String(el.textContent || "").trim();
+    if (!t) {
+      return;
+    }
+    const rule = replaceMap.find((r) => r.re.test(t));
+    if (!rule) {
+      return;
+    }
+    el.textContent = rule.value;
+  });
+}
+
 function wireGlobalNavigation() {
+  applyHrefUpdates();
+  updateLiveDates();
+
   bindByText(["Main Dashboard", "Tasks", "Focus"], "main_dashboard");
   bindByText(["Plan Tomorrow", "Plan"], "plan_tomorrow");
   bindByText(["Notes"], "notes_workspace");
   bindByText(["Daily Journal", "Journal"], "daily_journal");
   bindByText(["Settings"], "settings_menu");
 
-  // Route category/task tiles into detail view.
-  bindByText(["Exercise"], "tile_detail_view");
+  wireCategoryTiles();
 
   // Hamburger open + overlay close.
-  bindByIcon("menu", "hamburger_menu_overlay");
-  if (window.location.pathname.includes("/hamburger_menu_overlay/")) {
+  const href = String(window.location.href || "");
+  const isHamburgerOverlay = href.includes("hamburger_menu_overlay");
+
+  if (isHamburgerOverlay) {
     bindByIcon("close", "main_dashboard");
+  } else {
+    bindByIcon("menu", "hamburger_menu_overlay");
   }
 }
 

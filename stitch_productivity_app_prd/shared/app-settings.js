@@ -187,6 +187,63 @@ function wireSettingsScreenControls() {
       }
     });
   });
+
+  // Sync the visual selection state with persisted theme.
+  const persistedTheme = safeGet(STORAGE_KEYS.theme, DEFAULTS.theme);
+  if (persistedTheme === "system") {
+    const prefersDark =
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    refreshThemeButtonStyles(prefersDark ? "dark" : "light");
+  } else {
+    refreshThemeButtonStyles(persistedTheme === "dark" ? "dark" : "light");
+  }
+
+  const buttons = Array.from(document.querySelectorAll("button")).filter(
+    (b) => b instanceof HTMLButtonElement
+  );
+
+  const applyButton = buttons.find(
+    (b) => normalizeText(b.textContent) === "apply changes"
+  );
+  const resetButton = buttons.find(
+    (b) => normalizeText(b.textContent) === "reset to defaults"
+  );
+
+  function normalizeText(t) {
+    return String(t || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ");
+  }
+
+  if (applyButton) {
+    applyButton.addEventListener("click", () => {
+      // All changes are applied immediately; re-apply saved values to persist.
+      applySavedGlobalSettings();
+      const prev = applyButton.textContent;
+      applyButton.textContent = "Saved";
+      setTimeout(() => {
+        applyButton.textContent = prev;
+      }, 1000);
+    });
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      safeSet(STORAGE_KEYS.theme, "");
+      try {
+        window.localStorage.removeItem(STORAGE_KEYS.theme);
+        window.localStorage.removeItem(STORAGE_KEYS.fontScale);
+        window.localStorage.removeItem(STORAGE_KEYS.accent);
+      } catch {
+        // ignore
+      }
+      applyFontScale(DEFAULTS.fontScale);
+      applyTheme(DEFAULTS.theme);
+      applyAccentColor(DEFAULTS.accent);
+      window.location.reload();
+    });
+  }
 }
 
 function rgbToHex(rgbColor) {
