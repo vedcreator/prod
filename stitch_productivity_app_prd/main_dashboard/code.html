@@ -1,114 +1,94 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>The Editorial Workspace - Dashboard</title>
-<script>
-  tailwind = { config: { darkMode: "class", theme: { extend: { colors: {
-    "surface": "#f9f9f9",
-    "on-surface": "#2d3435",
-    "primary": "#5f5e5e",
-    "on-primary": "#faf7f6",
-    "surface-container-low": "#f2f4f4",
-    "surface-container": "#ebeeef",
-    "surface-container-high": "#e4e9ea",
-    "surface-container-highest": "#dde4e5",
-    "surface-container-lowest": "#ffffff",
-    "on-surface-variant": "#5a6061",
-    "outline-variant": "#adb3b4",
-    "primary-container": "#e5e2e1",
-    "on-primary-container": "#525151",
-    "primary-dim": "#535252",
-    "outline": "#757c7d",
-    "inverse-surface": "#0c0f0f"
-  }}}}
-</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface": "#f9f9f9",
-                        "on-background": "#2d3435",
-                        "secondary": "#5e5f61",
-                        "inverse-surface": "#0c0f0f",
-                        "on-secondary": "#f9f9fb",
-                        "tertiary-fixed-dim": "#c0dfee",
-                        "tertiary-fixed": "#ceedfd",
-                        "inverse-on-surface": "#9c9d9d",
-                        "error-dim": "#4e0309",
-                        "on-tertiary": "#f3faff",
-                        "on-primary-fixed": "#403f3f",
-                        "on-tertiary-container": "#3c5966",
-                        "tertiary-container": "#ceedfd",
-                        "surface-container-lowest": "#ffffff",
-                        "primary-container": "#e5e2e1",
-                        "outline-variant": "#adb3b4",
-                        "secondary-fixed-dim": "#d4d4d6",
-                        "primary": "#5f5e5e",
-                        "on-tertiary-fixed": "#2a4753",
-                        "on-primary": "#faf7f6",
-                        "secondary-dim": "#515355",
-                        "surface-bright": "#f9f9f9",
-                        "tertiary-dim": "#3a5764",
-                        "outline": "#757c7d",
-                        "on-secondary-fixed-variant": "#5a5c5d",
-                        "on-secondary-fixed": "#3e3f41",
-                        "surface-dim": "#d4dbdd",
-                        "on-error": "#fff7f6",
-                        "error-container": "#fe8983",
-                        "surface-tint": "#5f5e5e",
-                        "secondary-fixed": "#e2e2e4",
-                        "surface-variant": "#dde4e5",
-                        "on-surface": "#2d3435",
-                        "tertiary": "#466370",
-                        "on-primary-container": "#525151",
-                        "surface-container-highest": "#dde4e5",
-                        "secondary-container": "#e2e2e4",
-                        "background": "#f9f9f9",
-                        "on-surface-variant": "#5a6061",
-                        "on-tertiary-fixed-variant": "#466370",
-                        "error": "#9f403d",
-                        "surface-container": "#ebeeef",
-                        "primary-fixed": "#e5e2e1",
-                        "on-error-container": "#752121",
-                        "surface-container-high": "#e4e9ea",
-                        "surface-container-low": "#f2f4f4",
-                        "primary-fixed-dim": "#d6d4d3",
-                        "on-primary-fixed-variant": "#5c5b5b",
-                        "inverse-primary": "#ffffff",
-                        "on-secondary-container": "#505254",
-                        "primary-dim": "#535252"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    },
-                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-                },
-            },
-        }
-    </script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface": "#f9f9f9",
+          "on-background": "#2d3435",
+          "secondary": "#5e5f61",
+          "inverse-surface": "#0c0f0f",
+          "on-secondary": "#f9f9fb",
+          "tertiary-fixed-dim": "#c0dfee",
+          "tertiary-fixed": "#ceedfd",
+          "inverse-on-surface": "#9c9d9d",
+          "error-dim": "#4e0309",
+          "on-tertiary": "#f3faff",
+          "on-primary-fixed": "#403f3f",
+          "on-tertiary-container": "#3c5966",
+          "tertiary-container": "#ceedfd",
+          "surface-container-lowest": "#ffffff",
+          "primary-container": "#e5e2e1",
+          "outline-variant": "#adb3b4",
+          "secondary-fixed-dim": "#d4d4d6",
+          "primary": "#5f5e5e",
+          "on-tertiary-fixed": "#2a4753",
+          "on-primary": "#faf7f6",
+          "secondary-dim": "#515355",
+          "surface-bright": "#f9f9f9",
+          "tertiary-dim": "#3a5764",
+          "outline": "#757c7d",
+          "on-secondary-fixed-variant": "#5a5c5d",
+          "on-secondary-fixed": "#3e3f41",
+          "surface-dim": "#d4dbdd",
+          "on-error": "#fff7f6",
+          "error-container": "#fe8983",
+          "surface-tint": "#5f5e5e",
+          "secondary-fixed": "#e2e2e4",
+          "surface-variant": "#dde4e5",
+          "on-surface": "#2d3435",
+          "tertiary": "#466370",
+          "on-primary-container": "#525151",
+          "surface-container-highest": "#dde4e5",
+          "secondary-container": "#e2e2e4",
+          "background": "#f9f9f9",
+          "on-surface-variant": "#5a6061",
+          "on-tertiary-fixed-variant": "#466370",
+          "error": "#9f403d",
+          "surface-container": "#ebeeef",
+          "primary-fixed": "#e5e2e1",
+          "on-error-container": "#752121",
+          "surface-container-high": "#e4e9ea",
+          "surface-container-low": "#f2f4f4",
+          "primary-fixed-dim": "#d6d4d3",
+          "on-primary-fixed-variant": "#5c5b5b",
+          "inverse-primary": "#ffffff",
+          "on-secondary-container": "#505254",
+          "primary-dim": "#535252"
+        },
+        fontFamily: {
+          "headline": ["Manrope"],
+          "body": ["Inter"],
+          "label": ["Inter"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+  }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container">
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 flex items-center justify-between px-11 py-4 bg-[#f2f4f4] dark:bg-[#1a1d1d]">
@@ -217,9 +197,8 @@
 </section>
 </main>
 </div>
-<!-- Modal Backdrop (Hidden by default, shown for structure) -->
+<!-- Modal Backdrop -->
 <div class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-inverse-surface/10 backdrop-blur-sm" id="newEntryModalOverlay">
-<!-- New Tile Modal -->
 <div class="w-full max-w-lg glass-panel rounded-xl overflow-hidden shadow-2xl" id="newEntryModalPanel">
 <div class="p-10">
 <header class="flex justify-between items-center mb-10">
@@ -247,21 +226,20 @@
 <span class="font-body text-sm font-medium">Track Consistency</span>
 <span class="text-[0.7rem] text-on-surface-variant uppercase tracking-wider">Log daily progress metrics</span>
 </div>
-<!-- Toggle Switch -->
 <button aria-pressed="true" class="w-12 h-6 bg-primary-container rounded-full relative p-1 cursor-pointer" id="trackConsistencyToggle" type="button">
 <div class="w-4 h-4 bg-primary rounded-full absolute right-1 transition-all" id="trackConsistencyThumb"></div>
 </button>
 </div>
 <div class="pt-6">
 <button class="w-full bg-primary text-on-primary py-5 rounded-md font-headline font-bold uppercase tracking-[0.2em] text-xs hover:bg-primary-dim transition-all active:scale-[0.98]" type="submit">
-                            Create Task
-                        </button>
+  Create Task
+</button>
 </div>
 </form>
 </div>
 </div>
 </div>
-<!-- Mobile Navigation (Bottom) -->
+<!-- Mobile Navigation -->
 <nav class="md:hidden fixed bottom-0 w-full bg-surface-container-lowest glass-panel flex justify-around items-center py-4 z-50">
 <button class="flex flex-col items-center gap-1 text-primary">
 <span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
@@ -280,4 +258,5 @@
 <script type="module" src="../shared/navigation.js"></script>
 <script type="module" src="../shared/firestore-task-header.js"></script>
 <script type="module" src="../shared/firestore-tasks.js"></script>
-</body></html>
+</body>
+</html>
